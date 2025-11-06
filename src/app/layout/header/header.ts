@@ -5,9 +5,7 @@ import { MatToolbar } from '@angular/material/toolbar';
   selector: 'app-header',
   imports: [MatToolbar],
   template: `
-    <mat-toolbar>
-      Modern Store
-    </mat-toolbar>
+    <mat-toolbar class="w-full elevated py-2"> Modern Store </mat-toolbar>
   `,
   styles: ``,
 })
