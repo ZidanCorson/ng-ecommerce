@@ -1,28 +1,19 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { Product } from '../../modules/product';
+import { ProductCard } from "../../components/product-card/product-card";
 
 @Component({
   selector: 'app-products-grid',
-  imports: [],
+  imports: [ProductCard],
   template: `
-    <div class="bg-gray-100 p-6">
-      <h1 class="text-2xl font-bold text-gray-900" mb-6>{{ category() }}</h1>
+    <div class="bg-gray-100 p-6 h-full">
+      <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ category() }}</h1>
       <div class="responsive-grid">
       @for (product of filteredProducts(); track product.id) {
-      <div 
-      class="bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full"
-      >
-        <img [src]="product.imageUrl" alt="{{ product.name }}" class="w-full h-[300px] object-cover rounded-t-xl" />
-      
-        <div class="p-5 flex flex-col flex-1">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">{{ product.name }}</h3>
-        </div>
-      </div>
+        <app-product-card [product]="product" />
       }
       </div>
     </div>
-
-    
   `,
   styles: ``,
 })
