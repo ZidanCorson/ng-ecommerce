@@ -4,12 +4,11 @@ import { ProductCard } from "../../components/product-card/product-card";
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatNavList, MatListItem, MatListItemTitle } from "@angular/material/list";
 import { RouterLink } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-products-grid',
-  imports: [ProductCard, 
-    MatSidenavContent,
-     MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink],
+  imports: [ProductCard, MatSidenavContent,MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink, TitleCasePipe],
   template: `
 
     <mat-sidenav-container class="h-full">
@@ -18,9 +17,11 @@ import { RouterLink } from '@angular/router';
           <h2 class="text-lg text-gray-900">Categories</h2>
 
           <mat-nav-list>
-            @for (category of categories(); track category) {
-              <mat-list-item class="my-2" [routerLink]="['/products', category]">
-                <span matListItemTitle>{{ category }}</span>
+            @for (cat of categories(); track cat) {
+              <mat-list-item [activated]="cat === category()" class="my-2" [routerLink]="['/products', cat]">
+                <span matListItemTitle class="font-medium" [class]="cat === category() ? '!text-white' : null">
+                  {{ cat | titlecase }}
+                </span>
               </mat-list-item>
             }
           </mat-nav-list>
