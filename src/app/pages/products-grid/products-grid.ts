@@ -112,5 +112,12 @@ export default class ProductsGrid {
     },
   ]);
 
-  filteredProducts = computed(() => this.products().filter(p => p.category === this.category().toLowerCase()));
+  filteredProducts = computed(() => {
+
+    if (this.category() === 'all') {
+      return this.products();
+    }
+
+    return this.products().filter(p => p.category === this.category().toLowerCase());
+  });
 }
