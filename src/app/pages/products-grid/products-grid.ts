@@ -28,7 +28,10 @@ import { TitleCasePipe } from '@angular/common';
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-      <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ category() }}</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ category() | titlecase }}</h1>
+      <p class="text-base text-gray-600 mb-6">
+        {{ filteredProducts().length }} products found
+      </p>
       <div class="responsive-grid">
         @for (product of filteredProducts(); track product.id) {
         <app-product-card [product]="product" />
