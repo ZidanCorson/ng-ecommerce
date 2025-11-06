@@ -120,4 +120,5 @@ export default class ProductsGrid {
 
     return this.products().filter(p => p.category === this.category().toLowerCase());
   });
+
 }
