@@ -1,24 +1,17 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Product } from '../../models/product';
-import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatButton} from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
-import { EcommerceStore } from '../../ecommerce-store';
 
 @Component({
   selector: 'app-product-card',
-  imports: [MatIcon, MatButton, MatIconButton],
+  imports: [MatIcon, MatButton],
   template: `
     <div class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full"
       >
         <img [src]="product().imageUrl" alt="{{ product().name }}" class="w-full h-[300px] object-cover rounded-t-xl" />
       
-        <button class="!absolute z-10 top-3 right-3 w-10 h-10 rounded-full !bg-white border-0 shadow-md flex items-center justify-center cursor-pointer trasition-all duration-200 hover:scale-110 hover:shadow-lg"
-        [class]="isInWishlist() ? '!text-red-500' : '!text-gray-400'"
-        matIconButton
-        (click)="toggleWishlist(product())"
-        >
-          <mat-icon>{{ isInWishlist() ? 'favorite' : 'favorite_border' }}</mat-icon>
-        </button>
+        <ng-content />
 
         <div class="p-5 flex flex-col flex-1">
           <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
@@ -54,15 +47,4 @@ export class ProductCard {
 
   addToCartClicked = output<Product>();
 
-  store = inject(EcommerceStore);
-
-  isInWishlist = computed(() => this.store.wishlistItems().find(p => p.id === this.product().id))
-
-  toggleWishlist(product: Product) {
-    if (this.isInWishlist()) {
-      this.store.removeFromWishlist(product);
-    } else {
-      this.store.addToWishlist(product);
-    }
-  }
 }

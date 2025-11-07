@@ -1,15 +1,16 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
-import { Product } from '../../models/product';
 import { ProductCard } from "../../components/product-card/product-card";
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatNavList, MatListItem, MatListItemTitle } from "@angular/material/list";
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { EcommerceStore } from '../../ecommerce-store';
+import { MatIcon } from "@angular/material/icon";
+import { ToggleWishlistButton } from "../../components/toggle-wishlist-button/toggle-wishlist-button";
 
 @Component({
   selector: 'app-products-grid',
-  imports: [ProductCard, MatSidenavContent,MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink, TitleCasePipe],
+  imports: [ProductCard, MatSidenavContent, MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink, TitleCasePipe, MatIcon, ToggleWishlistButton],
   template: `
 
     <mat-sidenav-container class="h-full">
@@ -35,7 +36,9 @@ import { EcommerceStore } from '../../ecommerce-store';
       </p>
       <div class="responsive-grid">
         @for (product of store.filteredProducts(); track product.id) {
-        <app-product-card [product]="product" />
+        <app-product-card [product]="product" >
+          <app-toggle-wishlist-button class="!absolute z-10 top-3 right-3" [product]="product" />
+        </app-product-card>
         }
       </div>
       </mat-sidenav-content>
