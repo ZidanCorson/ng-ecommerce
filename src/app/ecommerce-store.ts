@@ -1,6 +1,6 @@
-import { computed } from '@angular/core';
+import { computed, signal } from '@angular/core';
 import { Product } from './models/product';
-import { signalStore, withComputed, withState } from '@ngrx/signals';
+import { patchState, signalMethod, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 
 export type EcommerceState = {
     products: Product[];
@@ -110,6 +110,13 @@ export const EcommerceStore = signalStore(
                 return products();
             }
             return products().filter((p) => p.category === category().toLowerCase());
+        }),
+
+    })),
+    withMethods((store)=>({
+        setCategory:signalMethod<string>( (category:string) =>{
+            patchState(store, {category});
         })
     }))
+
 );

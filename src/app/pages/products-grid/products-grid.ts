@@ -61,4 +61,7 @@ export default class ProductsGrid {
     'accessories',
   ]);
 
+  constructor() {
+    this.store.setCategory(this.category);
+  }
 }
