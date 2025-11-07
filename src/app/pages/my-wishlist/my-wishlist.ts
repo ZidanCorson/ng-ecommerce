@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BackButton } from "../../components/back-button/back-button";
+import { EcommerceStore } from '../../ecommerce-store';
 
 @Component({
   selector: 'app-my-wishlist',
@@ -8,12 +9,18 @@ import { BackButton } from "../../components/back-button/back-button";
     <div class="mx-auto max-w-[1200px] py-6 px-4">
       <app-back-button class="mb-6" navigateTo="/products/all">Continue Shopping</app-back-button>  
     
-      
+      @if (store.wishlistCount() > 0) {
+        <div class="mb-6 flex items-center justify-between">
+          <h1 class="text-2xl font-bold">My Wishlist</h1>
+          <span class="text-gray-500 text-xl"> {{ store.wishlistCount() }} items </span>
+        </div>
+        
+      } @else {  }
 
     </div>
   `,
   styles: ``,
 })
 export default class MyWishlist {
-
+  store = inject(EcommerceStore);
 }
