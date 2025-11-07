@@ -6,8 +6,10 @@ import { BackButton } from "../../components/back-button/back-button";
   imports: [BackButton],
   template: `
     <div class="mx-auto max-w-[1200px] py-6 px-4">
+      <app-back-button class="mb-6" navigateTo="/products/all">Continue Shopping</app-back-button>  
+    
+      
 
-      <app-back-button label="Continue Shopping" navigateTo="/products/all" />
     </div>
   `,
   styles: ``,
