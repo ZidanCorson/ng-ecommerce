@@ -60,11 +60,9 @@ export class ProductCard {
 
   toggleWishlist(product: Product) {
     if (this.isInWishlist()) {
-    
+      this.store.removeFromWishlist(product);
     } else {
       this.store.addToWishlist(product);
     }
-
   }
-
 }
