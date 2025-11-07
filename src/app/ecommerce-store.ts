@@ -5,6 +5,7 @@ import { patchState, signalMethod, signalStore, withComputed, withMethods, withS
 export type EcommerceState = {
     products: Product[];
     category: string;
+    wishlistItems: Product[];
 };
 
 export const EcommerceStore = signalStore(
@@ -103,6 +104,7 @@ export const EcommerceStore = signalStore(
     },
         ],
         category: 'all',
+        wishlistItems: [],
     }),
     withComputed(({category, products }) => ({
         filteredProducts: computed(() => {
