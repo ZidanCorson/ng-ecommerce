@@ -1,6 +1,7 @@
 import { computed, signal } from '@angular/core';
 import { Product } from './models/product';
 import { patchState, signalMethod, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { produce } from 'immer';
 
 export type EcommerceState = {
     products: Product[];
@@ -105,7 +106,7 @@ export const EcommerceStore = signalStore(
         ],
         category: 'all',
         wishlistItems: [],
-    }),
+    }as EcommerceState),
     withComputed(({category, products }) => ({
         filteredProducts: computed(() => {
             if (category() === 'all') {
@@ -118,7 +119,16 @@ export const EcommerceStore = signalStore(
     withMethods((store)=>({
         setCategory:signalMethod<string>( (category:string) =>{
             patchState(store, {category});
-        })
-    }))
+        }),
+        addToWishlist: (product:Product) =>{
+            const updatedWishlistItems = produce(store.wishlistItems, (draft: Product[]) => {
+                if(draft.find(p => p.id === product.id)) {
+                    draft.push(product);
+                }
+            });
 
+            patchState(store, {wishlistItems: updatedWishlistItems});
+
+        }
+    }))
 );
