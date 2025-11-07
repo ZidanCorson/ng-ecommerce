@@ -13,10 +13,11 @@ import { EcommerceStore } from '../../ecommerce-store';
         <img [src]="product().imageUrl" alt="{{ product().name }}" class="w-full h-[300px] object-cover rounded-t-xl" />
       
         <button class="!absolute z-10 top-3 right-3 w-10 h-10 rounded-full !bg-white border-0 shadow-md flex items-center justify-center cursor-pointer trasition-all duration-200 hover:scale-110 hover:shadow-lg"
+        [class]="isInWishlist() ? '!text-red-500' : '!text-gray-400'"
         matIconButton
         (click)="toggleWishlist(product())"
         >
-          <mat-icon>favorite</mat-icon>
+          <mat-icon>{{ isInWishlist() ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
 
         <div class="p-5 flex flex-col flex-1">
