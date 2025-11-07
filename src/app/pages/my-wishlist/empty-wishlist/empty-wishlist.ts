@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
       <h2 class="text-2xl font-bold mb-4">Your Wishlist is Empty</h2>
       <p class="text-gray-600 mb-8">Save items you love for later!</p>
 
-      <button mat-button="filled" routerLink="/products/all" class="min-w-[200px] py-3">Start Shopping</button>
+      <button matButton="filled" routerLink="/products/all" class="min-w-[200px] py-3">Start Shopping</button>
     </div>
   `,
   styles: ``,
