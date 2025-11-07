@@ -3,11 +3,12 @@ import { BackButton } from "../../components/back-button/back-button";
 import { EcommerceStore } from '../../ecommerce-store';
 import { ProductCard } from "../../components/product-card/product-card";
 import { MatIcon } from "@angular/material/icon";
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { EmptyWishlist } from "./empty-wishlist/empty-wishlist";
 
 @Component({
   selector: 'app-my-wishlist',
-  imports: [BackButton, ProductCard, MatIcon, MatIconButton],
+  imports: [BackButton, ProductCard, MatIcon, MatIconButton, EmptyWishlist, MatButton],
   template: `
     <div class="mx-auto max-w-[1200px] py-6 px-4">
       <app-back-button class="mb-6" navigateTo="/products/all">Continue Shopping</app-back-button>  
@@ -22,16 +23,25 @@ import { MatIconButton } from '@angular/material/button';
           @for (product of store.wishlistItems(); track $index) {
             <app-product-card [product]="product">
               <button 
-                class="!absolute top-3 right-3 z-10 w-10 h-10 rounded-full !bg-white border-0 shadow-md flex items-center justify-center cursor-pointer trasition-all duration-200 hover:scale-110 hover:shadow-lg"
-                matIconButton (click)="store.removeFromWishlist(product)">
-                    <mat-icon>delete</mat-icon>
+                class="!absolute top-3 right-3 z-10 !bg-white border-0 shadow-md flex items-center justify-center cursor-pointer trasition-all duration-200 hover:scale-110 hover:shadow-lg"
+                matIconButton (click)="store.removeFromWishlist(product)"
+              >
+                <mat-icon>delete</mat-icon>
               </button>
             </app-product-card>
           }
         </div>
-        
-      } @else {  }
 
+        <div class="mt-8 flex justify-center">
+          <button matButton="outlined" class="danger" (click)="store.clearWishlist()">
+            Clear Wishlist
+          </button>
+        </div>
+        
+      } @else {  
+        <app-empty-wishlist />
+
+      }
     </div>
   `,
   styles: ``,

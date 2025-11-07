@@ -139,5 +139,9 @@ export const EcommerceStore = signalStore(
             });
             toaster.success(`${product.name} removed from wishlist!`);
         },
+
+        clearWishlist: () => {
+            patchState(store, { wishlistItems: [] });
+        },
     }))
 );
