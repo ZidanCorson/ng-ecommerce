@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { Product } from '../../modules/product';
+import { Product } from '../../models/product';
 import { MatButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 
