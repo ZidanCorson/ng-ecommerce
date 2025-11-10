@@ -1,9 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CartItem } from '../../models/cart';
+import { QtySelector } from "../../components/qty-selector/qty-selector";
+import { EcommerceStore } from '../../ecommerce-store';
 
 @Component({
   selector: 'app-show-cart-item',
-  imports: [],
+  imports: [QtySelector],
   template: `
     <div class="grid grid-cols-3 grid-cols-[3fr_1fr_1fr]">
       <div class="flex items-center gap-4">
@@ -13,10 +15,22 @@ import { CartItem } from '../../models/cart';
           <div class="text-gray-600 text-lg">\${{ item().product.price }}</div>
         </div>
       </div>
+      <app-qty-selector [quantity]="item().quantity" />
+
+      <div class="flex flex-col items-end">
+        <div class="text-right font-semibold text-lg">
+          {{ total()}}
+        </div>
+
+
+      </div>
+
     </div>
   `,
   styles: ``,
 })
 export class ShowCartItem {
   item = input.required<CartItem>();
+  store = inject(EcommerceStore);
+  total = computed(() => (this.item().product.price * this.item().quantity).toFixed(2)); 
 }
