@@ -180,5 +180,23 @@ export const EcommerceStore = signalStore(
           });
         patchState(store, { cartItems: updatedCartItems, wishlistItems: [] });
       },
+
+      moveToWishlist: (product: Product) => {
+        const updatedCartItems = store.cartItems().filter((i => i.product.id !== product.id));
+        const updatedWishlistItems = produce(store.wishlistItems(), (draft) => {
+          if (!draft.find(p => p.id === product.id)) {
+              draft.push(product);
+          }
+        });
+        patchState(store, { cartItems: updatedCartItems, wishlistItems: updatedWishlistItems });
+      },
+
+      removeFromCart: (product: Product) => {
+        patchState(store, {
+            cartItems: store.cartItems().filter(i => i.product.id !== product.id)
+        });
+        toaster.success(`${product.name} removed from cart!`);
+      }
+
     }))
 );
