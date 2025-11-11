@@ -10,7 +10,7 @@ export type SignUpParams = {
     email: string;
     password: string;
     checkout?: boolean;
-    dialogId?: string;
+    dialogId: string;
 };
 
 export type SignInParams = Omit<SignUpParams, 'name'>;

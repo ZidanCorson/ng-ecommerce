@@ -7,6 +7,7 @@ import { CartItem } from './models/cart';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { SignInParams, User } from './models/user';
+import { Router } from '@angular/router';
 
 export type EcommerceState = {
     products: Product[];
@@ -126,7 +127,7 @@ export const EcommerceStore = signalStore(
         wishlistCount:computed(() => wishlistItems().length),
         cartCount:computed(() => cartItems().reduce((total, item) => total + item.quantity, 0))
     })),
-    withMethods((store, toaster = inject(Toaster), dialog = inject(MatDialog))=>({
+    withMethods((store, toaster = inject(Toaster), matDialog = inject(MatDialog), router= inject(Router))=>({
         setCategory:signalMethod<string>( (category:string) =>{
             patchState(store, {category});
         }),
@@ -204,7 +205,7 @@ export const EcommerceStore = signalStore(
       },
 
       proceedToCheckout: () => {
-        dialog.open(SignInDialog, {
+        matDialog.open(SignInDialog, {
           disableClose: true,
           data:{
             checkout:true
@@ -212,7 +213,7 @@ export const EcommerceStore = signalStore(
         });
       },
 
-      signIn: ({email, password}: SignInParams) => {
+      signIn: ({email, password, checkout, dialogId}: SignInParams) => {
         patchState(store, {
           user: {
             id: '1',
@@ -221,6 +222,13 @@ export const EcommerceStore = signalStore(
             imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg'
           },
         });
+
+        matDialog.getDialogById(dialogId)?.close();
+
+        if (checkout) {
+          router.navigate(['/checkout']);
+          
+        }
       },
     }))
 );
