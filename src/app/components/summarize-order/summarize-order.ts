@@ -8,7 +8,7 @@ import { EcommerceStore } from '../../ecommerce-store';
   template: `
     <div appViewPanel>
       <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
-      <div class="space-y-3 text-lg pt-4">
+      <div class="space-y-3 text-lg pt-4 border-t">
         <div class="flex justify-between">
           <span>Subtotal</span>
           <span>\${{ subtotal().toFixed(2) }}</span>
@@ -22,6 +22,9 @@ import { EcommerceStore } from '../../ecommerce-store';
           <span>\${{ total().toFixed(2) }}</span>
         </div>
       </div>
+
+      <ng-content select="[actionButtons]" />
+
     </div>
   `,
   styles: ``,

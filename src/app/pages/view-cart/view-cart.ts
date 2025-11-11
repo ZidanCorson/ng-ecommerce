@@ -3,10 +3,11 @@ import { BackButton } from "../../components/back-button/back-button";
 import { ListCartItems } from "./list-cart-items/list-cart-items";
 import { TeaseWishlist } from "./tease-wishlist/tease-wishlist";
 import { SummarizeOrder } from "../../components/summarize-order/summarize-order";
+import { MatAnchor } from "@angular/material/button";
 
 @Component({
   selector: 'app-view-cart',
-  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder],
+  imports: [BackButton, ListCartItems, TeaseWishlist, SummarizeOrder, MatAnchor],
   template: `
     <div class="mx-auto max-w-[1200px] py-6">
       <app-back-button class="mb-6" navigateTo="/products/all">Continue Shopping</app-back-button>
@@ -20,7 +21,11 @@ import { SummarizeOrder } from "../../components/summarize-order/summarize-order
         </div>
 
         <div>
-          <app-summarize-order />
+          <app-summarize-order>
+            <ng-container actionButtons>
+              <button matButton="filled" class="w-full mt-6 py-3">Proceed to Checkout</button>
+            </ng-container>
+          </app-summarize-order>
         </div>
       </div>
 
