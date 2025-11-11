@@ -227,7 +227,6 @@ export const EcommerceStore = signalStore(
 
         if (checkout) {
           router.navigate(['/checkout']);
-          
         }
       },
     }))
