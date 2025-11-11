@@ -29,7 +29,7 @@ import { MatDivider } from '@angular/material/divider';
             <span class="text-xs text-gray-500">{{ user.email }}</span>
           </div>
           <mat-divider></mat-divider>
-          <button class="!min-h-[32px]" mat-menu-item>
+          <button class="!min-h-[32px]" mat-menu-item (click)="store.signOut()">
             <mat-icon>logout</mat-icon>
             Sign Out
           </button>
