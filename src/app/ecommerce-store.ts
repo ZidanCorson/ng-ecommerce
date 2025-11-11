@@ -206,6 +206,9 @@ export const EcommerceStore = signalStore(
       proceedToCheckout: () => {
         dialog.open(SignInDialog, {
           disableClose: true,
+          data:{
+            checkout:true
+          }
         });
       },
 
