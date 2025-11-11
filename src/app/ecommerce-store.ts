@@ -4,12 +4,16 @@ import { patchState, signalMethod, signalStore, withComputed, withMethods, withS
 import { produce } from 'immer';
 import { Toaster } from './services/toaster';
 import { CartItem } from './models/cart';
+import { MatDialog } from '@angular/material/dialog';
+import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
+import { SignInParams, User } from './models/user';
 
 export type EcommerceState = {
     products: Product[];
     category: string;
     wishlistItems: Product[];
     cartItems:CartItem[];
+    user: User | undefined;
 };
 
 export const EcommerceStore = signalStore(
@@ -109,7 +113,8 @@ export const EcommerceStore = signalStore(
         ],
         category: 'all',
         wishlistItems: [],
-        cartItems:[]
+        cartItems:[],
+        user: undefined,
     }as EcommerceState),
     withComputed(({category, products, wishlistItems, cartItems }) => ({
         filteredProducts: computed(() => {
@@ -121,7 +126,7 @@ export const EcommerceStore = signalStore(
         wishlistCount:computed(() => wishlistItems().length),
         cartCount:computed(() => cartItems().reduce((total, item) => total + item.quantity, 0))
     })),
-    withMethods((store, toaster = inject(Toaster))=>({
+    withMethods((store, toaster = inject(Toaster), dialog = inject(MatDialog))=>({
         setCategory:signalMethod<string>( (category:string) =>{
             patchState(store, {category});
         }),
@@ -196,7 +201,23 @@ export const EcommerceStore = signalStore(
             cartItems: store.cartItems().filter(i => i.product.id !== product.id)
         });
         toaster.success(`${product.name} removed from cart!`);
-      }
+      },
 
+      proceedToCheckout: () => {
+        dialog.open(SignInDialog, {
+          disableClose: true,
+        });
+      },
+
+      signIn: ({email, password}: SignInParams) => {
+        patchState(store, {
+          user: {
+            id: '1',
+            name: 'John Doe',
+            email: email,
+            imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg'
+          },
+        });
+      },
     }))
 );

@@ -10,5 +10,13 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()), 
     provideHotToastConfig({style:{marginTop:'70px'}, stacking:'depth', duration:1000}),
+    {
+      provide: 'MAT_DIALOG_DEFAULT_OPTIONS',
+      useValue: {
+        appearance : 'outline',
+        subscriptSizing: 'dynamic',
+        floatLabel: 'never',
+      },
+    }
   ],
 };
