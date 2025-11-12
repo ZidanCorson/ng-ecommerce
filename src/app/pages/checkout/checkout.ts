@@ -4,10 +4,11 @@ import { ShippingForm } from "./shipping-form/shipping-form";
 import { PaymentForm } from "./payment-form/payment-form";
 import { SummarizeOrder } from "../../components/summarize-order/summarize-order";
 import { EcommerceStore } from '../../ecommerce-store';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-checkout',
-  imports: [BackButton, ShippingForm, PaymentForm, SummarizeOrder],
+  imports: [BackButton, ShippingForm, PaymentForm, SummarizeOrder,MatButton],
   template: `
     <div class="mx-auto max-w-[1200px] py-6">
       <app-back-button class="mb-4" navigateTo="/cart">Back to Cart</app-back-button>
@@ -25,7 +26,17 @@ import { EcommerceStore } from '../../ecommerce-store';
                   <span>{{ item.product.name }} x {{ item.quantity }}</span>
                   <span>\${{ (item.product.price * item.quantity).toFixed(2) }}</span>
                 </div>
-              }
+              }  
+            </ng-container>
+            <ng-container actionButtons>
+              <button 
+                matButton="filled"
+                class="w-full mt-6 py-3"
+                [disabled]="store.loading?.()"
+                (click)="store.placeOrder()"
+                >
+                {{ store.loading?.() ? 'Placing Order...' : 'Place Order' }}
+              </button>
             </ng-container>
 
 
