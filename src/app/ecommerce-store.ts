@@ -9,6 +9,7 @@ import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
 import { Order } from './models/order';
+import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 
 export type EcommerceState = {
     products: Product[];
@@ -16,7 +17,7 @@ export type EcommerceState = {
     wishlistItems: Product[];
     cartItems:CartItem[];
     user: User | undefined;
-    loading?: boolean;
+    loading: boolean;
 };
 
 export const EcommerceStore = signalStore(
@@ -120,6 +121,8 @@ export const EcommerceStore = signalStore(
         user: undefined,
         loading: false,
     }as EcommerceState),
+    withStorageSync({key:'modern-store', select:({wishlistItems, cartItems, user })=> ({wishlistItems, cartItems, user})}),
+
 
     withComputed(({category, products, wishlistItems, cartItems }) => ({
         filteredProducts: computed(() => {
