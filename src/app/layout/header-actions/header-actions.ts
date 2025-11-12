@@ -61,7 +61,8 @@ export class HeaderActions {
   openSignUpDialog() {
     this.matDialog.open(SignUpDialog, {
       disableClose: true,
-    });
+    })
+    
   }
 
 }

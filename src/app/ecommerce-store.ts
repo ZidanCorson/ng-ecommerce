@@ -205,12 +205,16 @@ export const EcommerceStore = signalStore(
       },
 
       proceedToCheckout: () => {
-        matDialog.open(SignInDialog, {
-          disableClose: true,
-          data:{
-            checkout:true
-          }
-        });
+        if (!store.user()) {
+          matDialog.open(SignInDialog, {
+            disableClose: true,
+            data:{
+              checkout:true,
+            },
+          });
+          return;
+        }
+        router.navigate(['/checkout']);
       },
 
       signIn: ({email, password, checkout, dialogId}: SignInParams) => {

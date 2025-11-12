@@ -72,8 +72,9 @@ export class SignUpDialog {
       return;
     }
 
-    const { name, email, password } = this.signUpForm.getRawValue();
-    this.store.signUp({ name, email, password, dialogId: this.dialogRef.id, checkout: this.data.checkout } as SignUpParams);
+    const { name, email, password } = this.signUpForm.value;
+    this.store.signUp({ name, email, password, dialogId: this.dialogRef.id, 
+      checkout: this.data?.checkout } as SignUpParams);
   }
 
   openSignInDialog() {
@@ -81,7 +82,7 @@ export class SignUpDialog {
     this.matDialog.open(SignInDialog, {
       disableClose: true,
       data:{
-        checkout:this.data.checkout
+        checkout:this.data?.checkout
       }
     });
   }
