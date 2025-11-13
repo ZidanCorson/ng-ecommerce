@@ -3,14 +3,15 @@ import { Product } from '../../models/product';
 import { MatButton} from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { EcommerceStore } from '../../ecommerce-store';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-product-card',
-  imports: [MatIcon, MatButton],
+  imports: [MatIcon, MatButton, RouterLink],
   template: `
     <div class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full"
       >
-        <img [src]="product().imageUrl" alt="{{ product().name }}" class="w-full h-[300px] object-cover rounded-t-xl" />
+        <img [src]="product().imageUrl" alt="{{ product().name }}" class="w-full h-[300px] object-cover rounded-t-xl" [routerLink]="['/product', product().id]" />
       
         <ng-content />
 
