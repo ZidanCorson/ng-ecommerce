@@ -7,17 +7,18 @@ import { ToggleWishlistButton } from "../../../components/toggle-wishlist-button
 import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { EcommerceStore } from '../../../ecommerce-store';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-info',
-  imports: [TitleCasePipe, StockStatus, QtySelector, ToggleWishlistButton, MatIconButton, MatIcon],
+  imports: [TitleCasePipe, StockStatus, QtySelector, ToggleWishlistButton, MatIconButton, MatIcon, MatButtonModule],
   template: `
     <div class="text-xs rounded-xl bg-gray-100 px-2 py-1 w-fit mb-2">
       {{ product().category | titlecase }}
     </div>
     <h1 class="text-2xl font-extrabold mb-3">{{ product().name }}</h1>
     <p class="text-3xl font-extrabold mb-4">\${{ product().price }}</p>
-    <app-stock-status [inStock]="product().inStock" />
+    <app-stock-status class="mb-4" [inStock]="product().inStock" />
     <p class="font-semibold mb-2">Description</p>
     <p class="text-gray-600 mb-2">{{ product().description }}</p>
     <div class="flex items-center gap-2 mb-3 pt-4">
