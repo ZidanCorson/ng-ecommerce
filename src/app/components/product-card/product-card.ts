@@ -38,8 +38,6 @@ import { RouterLink } from "@angular/router";
               Add to Cart
             </button>
           </div>
-        
-        
         </div>
       </div>
   `,
