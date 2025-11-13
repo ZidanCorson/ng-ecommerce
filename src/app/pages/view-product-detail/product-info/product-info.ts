@@ -4,7 +4,7 @@ import { TitleCasePipe } from '@angular/common';
 import { StockStatus } from "../stock-status/stock-status";
 import { QtySelector } from "../../../components/qty-selector/qty-selector";
 import { ToggleWishlistButton } from "../../../components/toggle-wishlist-button/toggle-wishlist-button";
-import { MatIconButton } from "../../../../../node_modules/@angular/material/button/index";
+import { MatIconButton } from "@angular/material/button";
 import { MatIcon } from "@angular/material/icon";
 import { EcommerceStore } from '../../../ecommerce-store';
 
