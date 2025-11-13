@@ -15,7 +15,7 @@ import { RouterLink } from "@angular/router";
       
         <ng-content />
 
-        <div class="p-5 flex flex-col flex-1">
+        <div class="p-5 flex flex-col flex-1" [routerLink]="['/product', product().id]">
           <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
             {{ product().name }}
           </h3>
