@@ -36,7 +36,20 @@ import { MatButtonModule } from '@angular/material/button';
       <button matIconButton>
         <mat-icon>share</mat-icon>
       </button>
-
+    </div>
+    <div class="pt-6 flex flex-col gap-2 text-gray-700 text-xs">
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">local_shipping</mat-icon>
+        <span>Free shipping on orders over $50</span>
+      </div>  
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">autorenew</mat-icon>
+        <span>30-day return policy</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <mat-icon class="small">shield</mat-icon>
+        <span>2-year warranty included</span>
+      </div>
     </div>
   `,
   styles: ``,
