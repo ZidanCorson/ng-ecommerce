@@ -33,7 +33,10 @@ import { RouterLink } from "@angular/router";
 
           <div class="flex items-center justify-between mt-auto">
             <span class="text-2xl font-bold text-gray-900">\${{product().price}}</span>
-            <button matButton="filled" class="flex items-center gap-2" (click)="store.addToCart(product())">
+            <button matButton="filled" 
+                    class="flex items-center gap-2" 
+                    [disabled]="!product().inStock"
+                    (click)="store.addToCart(product())">
               <mat-icon>shopping_cart</mat-icon>
               Add to Cart
             </button>
