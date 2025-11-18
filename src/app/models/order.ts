@@ -5,5 +5,6 @@ export type Order = {
     userId: string;
     total: number;
     items: CartItem[];
-    paymentStatus: 'success ' | 'failure';
+    paymentStatus: 'success' | 'failure';
+    shippingData?: any;
 };

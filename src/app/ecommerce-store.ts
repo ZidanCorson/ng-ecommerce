@@ -247,7 +247,7 @@ export const EcommerceStore = signalStore(
           total: Math.round(store.cartItems()
           .reduce((acc, item) => acc + item.product.price * item.quantity, 0)),
           items: store.cartItems(),
-          paymentStatus: 'success ',
+          paymentStatus: 'success',
         };
 
         await new Promise((resolve)=> setTimeout(resolve, 1000));
