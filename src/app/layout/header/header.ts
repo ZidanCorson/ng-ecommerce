@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
   selector: 'app-header',
   imports: [MatToolbar, HeaderActions, MatIcon, MatInputModule, MatFormFieldModule],
   template: `
-    <mat-toolbar class="w-full elevated py-2"> 
-      <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between">
-        <span class="cursor-pointer" (click)="store.setCategory('all')">Modern Store</span>
+    <mat-toolbar class="w-full elevated !py-2 !h-auto min-h-[64px]"> 
+      <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-2 md:gap-0">
+        <span class="cursor-pointer font-bold md:text-lg text-base whitespace-nowrap" (click)="store.setCategory('all')">Modern Store</span>
         
-        <div class="flex-1 mx-8 max-w-[500px]">
+        <div class="flex-1 mx-2 md:mx-8 max-w-[500px]">
             <mat-form-field class="w-full text-sm" appearance="outline" subscriptSizing="dynamic">
                 <mat-icon matPrefix class="text-gray-500">search</mat-icon>
-                <input matInput placeholder="Search products..." 
+                <input matInput placeholder="Search..." 
                        (keyup)="onSearch($event)">
             </mat-form-field>
         </div>

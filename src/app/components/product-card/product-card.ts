@@ -12,7 +12,7 @@ import { StarRating } from "../star-rating/star-rating";
   template: `
     <div class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl">
         <img [src]="product().imageUrl" alt="{{ product().name }}" 
-        class="w-full h-[300px] object-cover rounded-t-xl" 
+        class="w-full h-[200px] md:h-[300px] object-cover rounded-t-xl" 
         [routerLink]="['/product', product().id]"
         [style.view-transition-name]="'product-image-' + product().id" />
       

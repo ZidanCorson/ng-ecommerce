@@ -9,7 +9,7 @@ import { MatIcon } from "@angular/material/icon";
   selector: 'app-show-cart-item',
   imports: [QtySelector, MatIconButton, MatIcon],
   template: `
-    <div class="grid grid-cols-3 grid-cols-[3fr_1fr_1fr]">
+    <div class="grid grid-cols-1 sm:grid-cols-[3fr_1fr_1fr] gap-4 items-center">
       <div class="flex items-center gap-4">
         <img [src]="item().product.imageUrl" class="w-24 h-24 object-cover rounded-lg" [style.view-transition-name]="'product-image-' + item().product.id" />
         <div>
@@ -19,7 +19,7 @@ import { MatIcon } from "@angular/material/icon";
       </div>
       <app-qty-selector [quantity]="item().quantity" (qtyUpdated)="store.setItemQuantity({productId:item().product.id, quantity:$event})"/>
 
-      <div class="flex flex-col items-end">
+      <div class="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start w-full sm:w-auto mt-2 sm:mt-0">
         <div class="text-right font-semibold text-lg">
           \${{ total()}}
         </div>

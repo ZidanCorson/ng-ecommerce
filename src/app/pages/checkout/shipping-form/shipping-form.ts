@@ -29,7 +29,7 @@ import { MatInput } from '@angular/material/input';
             Last Name is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="col-span-2">
+        <mat-form-field class="col-span-1 lg:col-span-2">
           <mat-label>Address</mat-label>
           <input matInput type="text" formControlName="address" required>
           <mat-error *ngIf="shippingForm.get('address')?.invalid && shippingForm.get('address')?.touched">
@@ -50,7 +50,7 @@ import { MatInput } from '@angular/material/input';
             State/Province is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="col-span-2">
+        <mat-form-field class="col-span-1 lg:col-span-2">
           <mat-label>Postal Code</mat-label>
           <input matInput type="text" formControlName="postalCode" required>
           <mat-error *ngIf="shippingForm.get('postalCode')?.invalid && shippingForm.get('postalCode')?.touched">

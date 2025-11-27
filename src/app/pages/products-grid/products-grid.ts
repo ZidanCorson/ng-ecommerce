@@ -6,20 +6,25 @@ import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { EcommerceStore } from '../../ecommerce-store';
 import { ToggleWishlistButton } from "../../components/toggle-wishlist-button/toggle-wishlist-button";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-products-grid',
-  imports: [ProductCard, MatSidenavContent, MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink, TitleCasePipe, ToggleWishlistButton],
+  imports: [ProductCard, MatSidenavContent, MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatListItemTitle, RouterLink, TitleCasePipe, ToggleWishlistButton, MatIcon, MatIconButton],
   template: `
 
     <mat-sidenav-container class="h-full">
-      <mat-sidenav mode="side" opened="true">
+      <mat-sidenav #sidenav [mode]="isHandset() ? 'over' : 'side'" [opened]="!isHandset()">
         <div class="p-6">
           <h2 class="text-lg text-gray-900">Categories</h2>
 
           <mat-nav-list>
             @for (cat of categories(); track cat) {
-              <mat-list-item [activated]="cat === category()" class="my-2" [routerLink]="['/products', cat]">
+              <mat-list-item [activated]="cat === category()" class="my-2" [routerLink]="['/products', cat]" (click)="isHandset() && sidenav.close()">
                 <span matListItemTitle class="font-medium" [class]="cat === category() ? '!text-white' : null">
                   {{ cat | titlecase }}
                 </span>
@@ -29,16 +34,27 @@ import { ToggleWishlistButton } from "../../components/toggle-wishlist-button/to
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-      <h1 class="text-2xl font-bold text-gray-900 mb-1">
-        @if (store.searchQuery()) {
-          Search Results for "{{ store.searchQuery() }}"
-        } @else {
-          {{ category() | titlecase }}
+      
+      <div class="flex items-center gap-4 mb-6">
+        @if (isHandset()) {
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
         }
-      </h1>
-      <p class="text-base text-gray-600 mb-6">
-        {{ store.filteredProducts().length }} products found
-      </p>
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 mb-1">
+            @if (store.searchQuery()) {
+              Search Results for "{{ store.searchQuery() }}"
+            } @else {
+              {{ category() | titlecase }}
+            }
+          </h1>
+          <p class="text-base text-gray-600">
+            {{ store.filteredProducts().length }} products found
+          </p>
+        </div>
+      </div>
+
       <div class="responsive-grid">
         @for (product of store.filteredProducts(); track product.id) {
         <app-product-card [product]="product" >
@@ -57,6 +73,13 @@ export default class ProductsGrid {
   category = input<string>("all");
 
   store = inject(EcommerceStore);
+  breakpointObserver = inject(BreakpointObserver);
+
+  isHandset = toSignal(
+    this.breakpointObserver.observe(Breakpoints.Handset)
+      .pipe(map(result => result.matches)),
+    { initialValue: false }
+  );
 
   categories = signal<string[]>([
     'all',
