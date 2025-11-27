@@ -8,6 +8,7 @@ import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { MatButton } from '@angular/material/button';
 import { EcommerceStore } from '../../../ecommerce-store';
+import { AddReviewParams } from '../../../models/user-review';
 
 @Component({
   selector: 'app-write-review',
@@ -38,7 +39,7 @@ import { EcommerceStore } from '../../../ecommerce-store';
             <mat-label>Review</mat-label>
             <textarea
               placeholder="Tell others about your experience with this product"
-              formControlName="Comment"
+              formControlName="comment"
               matInput
               type="text"
               rows="4"></textarea>
@@ -73,10 +74,18 @@ export class WriteReview {
 
   reviewForm = this.fb.group({
     title: ['', Validators.required],
-    Comment: ['', Validators.required],
+    comment: ['', Validators.required],
     rating: [5, Validators.required],
   });
 
-  saveReview(){}
+  saveReview(){
+    if (this.reviewForm.invalid){
+      this.reviewForm.markAllAsTouched();
+      return;
+  }
+    const { title, comment, rating } = this.reviewForm.value;
+    this.store.addReview({ title, comment, rating } as AddReviewParams);
+    
+  }
 
 }
