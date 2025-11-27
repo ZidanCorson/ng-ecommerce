@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   template: `
     <mat-toolbar class="w-full elevated !py-2 !h-auto min-h-[64px]"> 
       <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between gap-2 md:gap-0">
-        <span class="cursor-pointer font-bold md:text-lg text-base whitespace-nowrap" (click)="store.setCategory('all')">Modern Store</span>
+        <span class="cursor-pointer font-bold md:text-lg text-base whitespace-nowrap" (click)="router.navigate(['/products/all'])">Modern Store</span>
         
         <div class="flex-1 mx-2 md:mx-8 max-w-[500px]">
             <mat-form-field class="w-full text-sm" appearance="outline" subscriptSizing="dynamic">
