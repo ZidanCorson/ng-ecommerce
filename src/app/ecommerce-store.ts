@@ -19,6 +19,7 @@ export type EcommerceState = {
     user: User | undefined;
     loading: boolean;
     selectedProductId: string | undefined;
+    writeReview: boolean;
 };
 
 export const EcommerceStore = signalStore(
@@ -258,6 +259,7 @@ export const EcommerceStore = signalStore(
         user: undefined,
         loading: false,
         selectedProductId: undefined,
+        writeReview: false,
     }as EcommerceState),
     withStorageSync({key:'modern-store', select:({wishlistItems, cartItems, user })=> ({wishlistItems, cartItems, user})}),
 
@@ -429,6 +431,14 @@ export const EcommerceStore = signalStore(
       signOut: () => {
         patchState(store, { user: undefined } );
       },
+
+      showWriteReview:() => {
+        patchState(store, { writeReview: true });
+      },
+
+      hideWriteReview:() => {
+        patchState(store, { writeReview: false });
+      }
 
       
     }))
