@@ -10,7 +10,8 @@ import { MatIcon } from '@angular/material/icon';
         @for (star of starArray(); track $index){
           <mat-icon class="!text-lg"
           [inline]="true"
-          [class]="star ? '!text-yellow-400' : '!text-gray-300'">star</mat-icon>
+          [class]="star ? '!text-yellow-400' : '!text-gray-300'">
+          star</mat-icon>
         }
       </div>
 
