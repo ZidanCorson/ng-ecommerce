@@ -35,13 +35,13 @@ import { StarRating } from "../star-rating/star-rating";
           </div>
 
           <div class="flex items-center justify-between mt-auto">
-            <span class="text-2xl font-bold text-gray-900">\${{product().price}}</span>
+            <span class="text-lg md:text-2xl font-bold text-gray-900">\${{product().price}}</span>
             <button matButton="filled" 
-                    class="flex items-center gap-2" 
+                    class="flex items-center gap-1 md:gap-2 !px-2 md:!px-4 whitespace-nowrap" 
                     [disabled]="!product().inStock"
                     (click)="store.addToCart(product())">
-              <mat-icon>shopping_cart</mat-icon>
-              Add to Cart
+              <mat-icon class="!w-5 !h-5 !text-[20px] md:!w-6 md:!h-6 md:!text-[24px]">shopping_cart</mat-icon>
+              <span class="text-xs md:text-sm">Add to Cart</span>
             </button>
           </div>
         </div>
