@@ -27,94 +27,230 @@ export const EcommerceStore = signalStore(
     },
     withState({
         products: [
-    {
-      id: "1",
-      name: 'Wireless Bluetooth Headphones',
-      description: 'High-quality wireless headphones with noise cancellation',
-      price: 89.99,
-      imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=300&fit=crop',
-      rating: 4.5,
-      reviewsCount: 120,
-      inStock: true,
-      category: 'electronics',
-    },
-    {
-      id: "2",
-      name: 'Running Shoes',
-      price: 124.99,
-      category: 'sports',
-      description: 'Comfortable running shoes for daily workouts',
-      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 4.2,
-      reviewsCount: 85
-    },
-    {
-      id: "3",
-      name: 'Coffee Maker',
-      price: 199.99,
-      category: 'kitchen',
-      description: 'Programmable coffee maker with built-in grinder',
-      imageUrl: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&h=300&fit=crop',
-      inStock: false,
-      rating: 4.7,
-      reviewsCount: 60
-    },
-    {
-      id: "4",
-      name: 'Smartphone Case',
-      price: 29.99,
-      category: 'accessories',
-      description: 'Protective case with wireless charging support',
-      imageUrl: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 3.9,
-      reviewsCount: 45
-    },
-    {
-      id: "5",
-      name: 'Gaming Laptop',
-      price: 1299.99,
-      category: 'electronics',
-      description: 'High-performance gaming laptop with RTX graphics',
-      imageUrl: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 4.6,
-      reviewsCount: 95
-    },
-    {
-      id: "6",
-      name: 'Wireless Mouse',
-      price: 49.99,
-      category: 'electronics',
-      description: 'Ergonomic wireless mouse with programmable buttons',
-      imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 4.3,
-      reviewsCount: 78
-    },
-    {
-      id: "7",
-      name: 'Smart Watch',
-      price: 249.99,
-      category: 'electronics',
-      description: 'Fitness tracking smartwatch with heart rate monitor',
-      imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 4.4,
-      reviewsCount: 132
-    },
-    {
-      id: "8",
-      name: 'Bluetooth Speaker',
-      price: 79.99,
-      category: 'electronics',
-      description: 'Portable waterproof speaker with 360-degree sound',
-      imageUrl: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=300&fit=crop',
-      inStock: true,
-      rating: 4.1,
-      reviewsCount: 67
-    },
+            {
+                id: "1",
+                name: 'Wireless Bluetooth Headphones',
+                description: 'High-quality wireless headphones with noise cancellation and 30-hour battery life.',
+                price: 89.99,
+                imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=300&fit=crop',
+                rating: 4.5,
+                reviewsCount: 2,
+                inStock: true,
+                category: 'electronics',
+                reviews: [
+                    {
+                        id: 'r1',
+                        productId: '1',
+                        userName: 'Alice Smith',
+                        userImageUrl: 'https://randomuser.me/api/portraits/women/1.jpg',
+                        rating: 5,
+                        title: 'Amazing sound quality',
+                        comment: 'These headphones are fantastic! The noise cancellation works perfectly for my commute.',
+                        reviewDate: new Date('2023-10-15')
+                    },
+                    {
+                        id: 'r2',
+                        productId: '1',
+                        userName: 'Bob Jones',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/2.jpg',
+                        rating: 4,
+                        title: 'Good value',
+                        comment: 'Great sound for the price, but the ear cups could be a bit softer.',
+                        reviewDate: new Date('2023-11-02')
+                    }
+                ],
+            },
+            {
+                id: "2",
+                name: 'Running Shoes',
+                price: 124.99,
+                category: 'sports',
+                description: 'Lightweight and comfortable running shoes designed for daily workouts and marathons.',
+                imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 4.2,
+                reviewsCount: 2,
+                reviews: [
+                    {
+                        id: 'r3',
+                        productId: '2',
+                        userName: 'Charlie Brown',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/3.jpg',
+                        rating: 5,
+                        title: 'Super comfortable',
+                        comment: 'I ran a marathon in these and had zero blisters. Highly recommend!',
+                        reviewDate: new Date('2023-09-20')
+                    },
+                    {
+                        id: 'r4',
+                        productId: '2',
+                        userName: 'Diana Prince',
+                        userImageUrl: 'https://randomuser.me/api/portraits/women/4.jpg',
+                        rating: 3,
+                        title: 'Runs small',
+                        comment: 'Good quality but order a half size up.',
+                        reviewDate: new Date('2023-10-05')
+                    }
+                ]
+            },
+            {
+                id: "3",
+                name: 'Coffee Maker',
+                price: 199.99,
+                category: 'kitchen',
+                description: 'Programmable coffee maker with built-in grinder for the freshest brew every morning.',
+                imageUrl: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&h=300&fit=crop',
+                inStock: false,
+                rating: 4.7,
+                reviewsCount: 1,
+                reviews: [
+                    {
+                        id: 'r5',
+                        productId: '3',
+                        userName: 'Evan Wright',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/5.jpg',
+                        rating: 5,
+                        title: 'Barista quality',
+                        comment: 'Saves me so much money on coffee shops. The grinder is a game changer.',
+                        reviewDate: new Date('2023-11-10')
+                    }
+                ]
+            },
+            {
+                id: "4",
+                name: 'Smartphone Case',
+                price: 29.99,
+                category: 'accessories',
+                description: 'Durable protective case with shock absorption and wireless charging support.',
+                imageUrl: 'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 3.9,
+                reviewsCount: 1,
+                reviews: [
+                    {
+                        id: 'r6',
+                        productId: '4',
+                        userName: 'Fiona Gallagher',
+                        userImageUrl: 'https://randomuser.me/api/portraits/women/6.jpg',
+                        rating: 4,
+                        title: 'Solid protection',
+                        comment: 'Dropped my phone twice and no scratches. A bit bulky though.',
+                        reviewDate: new Date('2023-08-15')
+                    }
+                ]
+            },
+            {
+                id: "5",
+                name: 'Gaming Laptop',
+                price: 1299.99,
+                category: 'electronics',
+                description: 'High-performance gaming laptop with RTX graphics, 32GB RAM, and 1TB SSD.',
+                imageUrl: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 4.6,
+                reviewsCount: 2,
+                reviews: [
+                    {
+                        id: 'r7',
+                        productId: '5',
+                        userName: 'George Martin',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/7.jpg',
+                        rating: 5,
+                        title: 'Beast of a machine',
+                        comment: 'Runs Cyberpunk 2077 on ultra settings smoothly.',
+                        reviewDate: new Date('2023-12-01')
+                    },
+                    {
+                        id: 'r8',
+                        productId: '5',
+                        userName: 'Hannah Lee',
+                        userImageUrl: 'https://randomuser.me/api/portraits/women/8.jpg',
+                        rating: 4,
+                        title: 'Gets hot',
+                        comment: 'Performance is top notch but the fans get loud under load.',
+                        reviewDate: new Date('2023-11-25')
+                    }
+                ]
+            },
+            {
+                id: "6",
+                name: 'Wireless Mouse',
+                price: 49.99,
+                category: 'electronics',
+                description: 'Ergonomic wireless mouse with programmable buttons and long battery life.',
+                imageUrl: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 4.3,
+                reviewsCount: 1,
+                reviews: [
+                    {
+                        id: 'r9',
+                        productId: '6',
+                        userName: 'Ian Somerhalder',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/9.jpg',
+                        rating: 4,
+                        title: 'Comfortable',
+                        comment: 'Fits my hand perfectly. The software is a bit clunky though.',
+                        reviewDate: new Date('2023-10-30')
+                    }
+                ]
+            },
+            {
+                id: "7",
+                name: 'Smart Watch',
+                price: 249.99,
+                category: 'electronics',
+                description: 'Advanced fitness tracking smartwatch with heart rate monitor, GPS, and sleep tracking.',
+                imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 4.4,
+                reviewsCount: 2,
+                reviews: [
+                    {
+                        id: 'r10',
+                        productId: '7',
+                        userName: 'Julia Roberts',
+                        userImageUrl: 'https://randomuser.me/api/portraits/women/10.jpg',
+                        rating: 5,
+                        title: 'Love it',
+                        comment: 'Motivates me to move every day. The sleep tracking is very accurate.',
+                        reviewDate: new Date('2023-09-12')
+                    },
+                    {
+                        id: 'r11',
+                        productId: '7',
+                        userName: 'Kevin Hart',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/11.jpg',
+                        rating: 4,
+                        title: 'Battery life',
+                        comment: 'Great features but needs charging every night.',
+                        reviewDate: new Date('2023-10-01')
+                    }
+                ]
+            },
+            {
+                id: "8",
+                name: 'Bluetooth Speaker',
+                price: 79.99,
+                category: 'electronics',
+                description: 'Portable waterproof speaker with 360-degree sound and rugged design.',
+                imageUrl: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&h=300&fit=crop',
+                inStock: true,
+                rating: 4.1,
+                reviewsCount: 1,
+                reviews: [
+                    {
+                        id: 'r12',
+                        productId: '8',
+                        userName: 'Liam Neeson',
+                        userImageUrl: 'https://randomuser.me/api/portraits/men/12.jpg',
+                        rating: 4,
+                        title: 'Good for beach',
+                        comment: 'Took it to the beach and it survived the sand and water. Sound is decent.',
+                        reviewDate: new Date('2023-07-20')
+                    }
+                ]
+            },
         ],
         category: 'all',
         wishlistItems: [],

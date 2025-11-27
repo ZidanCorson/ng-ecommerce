@@ -1,3 +1,6 @@
+import { User } from "./user";
+import { UserReview } from "./user-review";
+
 export type Product = {
     id: string;
     name: string;
@@ -8,4 +11,5 @@ export type Product = {
     reviewsCount:number;
     inStock:boolean;
     category:string;
+    reviews: UserReview[];
 };
