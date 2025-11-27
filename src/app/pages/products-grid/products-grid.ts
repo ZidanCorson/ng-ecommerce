@@ -29,7 +29,13 @@ import { ToggleWishlistButton } from "../../components/toggle-wishlist-button/to
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-      <h1 class="text-2xl font-bold text-gray-900 mb-1">{{ category() | titlecase }}</h1>
+      <h1 class="text-2xl font-bold text-gray-900 mb-1">
+        @if (store.searchQuery()) {
+          Search Results for "{{ store.searchQuery() }}"
+        } @else {
+          {{ category() | titlecase }}
+        }
+      </h1>
       <p class="text-base text-gray-600 mb-6">
         {{ store.filteredProducts().length }} products found
       </p>

@@ -21,6 +21,7 @@ export type EcommerceState = {
     loading: boolean;
     selectedProductId: string | undefined;
     writeReview: boolean;
+    searchQuery: string;
 };
 
 export const EcommerceStore = signalStore(
@@ -261,15 +262,22 @@ export const EcommerceStore = signalStore(
         loading: false,
         selectedProductId: undefined,
         writeReview: false,
+        searchQuery: '',
     }as EcommerceState),
     withStorageSync({key:'modern-store', select:({wishlistItems, cartItems, user })=> ({wishlistItems, cartItems, user})}),
 
-    withComputed(({category, products, wishlistItems, cartItems, selectedProductId }) => ({
+    withComputed(({category, products, wishlistItems, cartItems, selectedProductId, searchQuery }) => ({
         filteredProducts: computed(() => {
-            if (category() === 'all') {
-                return products();
+            if (searchQuery()) {
+                const query = searchQuery().toLowerCase();
+                return products().filter(p => p.name.toLowerCase().includes(query));
             }
-            return products().filter((p) => p.category === category().toLowerCase());
+
+            const productsList = category() === 'all' 
+                ? products() 
+                : products().filter((p) => p.category === category().toLowerCase());
+            
+            return productsList;
         }),
         wishlistCount:computed(() => wishlistItems().length),
         cartCount:computed(() => cartItems().reduce((total, item) => total + item.quantity, 0)),
@@ -277,7 +285,11 @@ export const EcommerceStore = signalStore(
     })),
     withMethods((store, toaster = inject(Toaster), matDialog = inject(MatDialog), router= inject(Router))=>({
         setCategory:signalMethod<string>( (category:string) =>{
-            patchState(store, {category});
+            patchState(store, {category, searchQuery: ''});
+        }),
+
+        setSearchQuery: signalMethod<string>((query: string) => {
+            patchState(store, { searchQuery: query });
         }),
 
         setProductId:signalMethod<string>((productId:string) =>{
