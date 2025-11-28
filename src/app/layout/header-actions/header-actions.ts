@@ -40,7 +40,7 @@ import { SignUpDialog } from '../../components/sign-up-dialog/sign-up-dialog';
         </mat-menu>
       } @else {
         <button matButton (click)="openSignInDialog()">Sign In</button>
-        <button matButton="filled" (click)="openSignUpDialog">Sign Up</button>
+        <button matButton="filled" (click)="openSignUpDialog()">Sign Up</button>
       }
       
     </div>
