@@ -15,42 +15,42 @@ import { MatInput } from '@angular/material/input';
         Shipping Information
       </h2>
       <form [formGroup]="shippingForm" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
           <input matInput type="text" formControlName="firstName" required>
           <mat-error *ngIf="shippingForm.get('firstName')?.invalid && shippingForm.get('firstName')?.touched">
             First Name is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Last Name</mat-label>
           <input matInput type="text" formControlName="lastName" required>
           <mat-error *ngIf="shippingForm.get('lastName')?.invalid && shippingForm.get('lastName')?.touched">
             Last Name is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="col-span-1 lg:col-span-2">
+        <mat-form-field class="col-span-1 lg:col-span-2" appearance="outline">
           <mat-label>Address</mat-label>
           <input matInput type="text" formControlName="address" required>
           <mat-error *ngIf="shippingForm.get('address')?.invalid && shippingForm.get('address')?.touched">
             Address is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>City</mat-label>
           <input matInput type="text" formControlName="city" required>
           <mat-error *ngIf="shippingForm.get('city')?.invalid && shippingForm.get('city')?.touched">
             City is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>State/Province</mat-label>
           <input matInput type="text" formControlName="state" required>
           <mat-error *ngIf="shippingForm.get('state')?.invalid && shippingForm.get('state')?.touched">
             State/Province is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="col-span-1 lg:col-span-2">
+        <mat-form-field class="col-span-1 lg:col-span-2" appearance="outline">
           <mat-label>Postal Code</mat-label>
           <input matInput type="text" formControlName="postalCode" required>
           <mat-error *ngIf="shippingForm.get('postalCode')?.invalid && shippingForm.get('postalCode')?.touched">
