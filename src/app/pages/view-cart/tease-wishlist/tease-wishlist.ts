@@ -10,7 +10,7 @@ import { MatActionList } from "@angular/material/list";
   selector: 'app-tease-wishlist',
   imports: [ViewPanel, MatIcon, MatButton, RouterLink, MatActionList],
   template: `
-    <div appViewPanel class="flex items-center justify-between">
+    <div appViewPanel class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
       <div class="flex items-center gap-3">
         <mat-icon class="!text-red-500">favorite_border</mat-icon>
         <div>
